@@ -15,6 +15,8 @@ describe('SearchBar', () => {
         data={[]}
         updateFilter={() => {}}
         fireSearch={() => {}}
+        showStaticData={false}
+        setShowStaticData={() => {}}
         />,
        {attachTo: document.createElement('div')}
     );

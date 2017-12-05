@@ -64,6 +64,7 @@ const SearchBar = props => {
 SearchBar.propTypes = {
   data: PropTypes.array.isRequired,
   showStaticData: PropTypes.bool.isRequired,
+  setShowStaticData: PropTypes.func.isRequired,
   updateFilter: PropTypes.func.isRequired,
   fireSearch: PropTypes.func.isRequired
 };
