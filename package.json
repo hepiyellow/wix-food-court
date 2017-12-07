@@ -42,6 +42,8 @@
     "immutability-helper": "^2.5.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-redux": "file:node_modules/react-redux",
+    "redux": "file:node_modules/redux",
     "wix-style-react": "^1.1.4262"
   },
   "babel": {
