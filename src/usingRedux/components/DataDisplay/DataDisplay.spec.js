@@ -1,7 +1,7 @@
 import React from 'react';
 import {expect} from 'chai';
 import {mount} from 'enzyme';
-import DataDisplay, {DATA_TABLE_DATA_HOOK} from './DataDisplay';
+import DataDisplay, {DATA_HOOKS} from './DataDisplay';
 import DataTable from 'wix-style-react/DataTable';
 import {dataTableTestkitFactory as enzymeDataTableTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
@@ -23,7 +23,7 @@ describe('DataDisplay', () => {
         {title: 'Phone', render: row => <span>{row.phone}</span>, width: '40%', minWidth: '100px'}
       ]
     };
-    const dataHook = DATA_TABLE_DATA_HOOK;
+    const dataHook = DATA_HOOKS.dataTable;
     const wrapper = mount(<div><DataTable {...props} dataHook={dataHook}/></div>);
     const testkit = enzymeDataTableTestkitFactory({wrapper, dataHook});
     expect(testkit.getRowsCount()).to.eq(2);
@@ -40,7 +40,7 @@ describe('DataDisplay', () => {
       showStaticData: false,
       setShowStaticData: () => { }
     };
-    const dataHook = DATA_TABLE_DATA_HOOK;
+    const dataHook = DATA_HOOKS.dataTable;
     const wrapper = mount(<div><DataDisplay {...searchResultsProps}/></div>);
     const testkit = enzymeDataTableTestkitFactory({wrapper, dataHook});
     expect(testkit.getRowsCount()).to.eq(2);
