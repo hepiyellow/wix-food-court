@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import autobind from 'autobind-decorator';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as Actions from '../../actions';
+
 import s from './SearchBar.scss';
 import Search from 'wix-style-react/Search';
 import Checkbox from 'wix-style-react/Checkbox';
@@ -81,9 +85,22 @@ SearchBar.propTypes = {
   data: PropTypes.array.isRequired,
   showStaticData: PropTypes.bool.isRequired,
   setShowStaticData: PropTypes.func.isRequired,
+  fireSearch: PropTypes.func.isRequired,
+  // This is a Redux mapped prop. Eslint forces it to be here.
   updateFilter: PropTypes.func.isRequired,
-  fireSearch: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  // Maybe no need for state
+  return {
+    filterString: state.dataDisplay.filter
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    updateFilter: bindActionCreators(Actions.setFilterActionCreator, dispatch)
+  };
+}
 
-export default SearchBar;
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
