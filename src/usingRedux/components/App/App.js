@@ -49,7 +49,7 @@ class App extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.header}>
-          <h2>{'Food Court! (ReactState)'}</h2>
+          <h2>{'Food Court! (Redux)'}</h2>
         </div>
         <div className={s.searchPane}>
           <SearchBar
