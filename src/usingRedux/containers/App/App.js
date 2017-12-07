@@ -23,19 +23,6 @@ class App extends React.Component {
     this.state = DEFAULT_APP_STATE;
   }
 
-  /**
-   * Creates a filtered data array, selecting only rows in which the value of
-   * the property named [filedName] includes the filter string.
-   * @param {*} data Array of items (objects). An object must have a property named fieldName.
-   * @param {*} filterStr the filter string
-   * @param {*} fieldName the property to filter on.
-   */
-  static getFilteredData(data, filterStr, fieldName) {
-    return data.filter(row => {
-      return row[fieldName].includes(filterStr);
-    });
-  }
-
   render() {
     const searchResults = this.state.showStaticData ? STATIC_SEARCH_RESULT : this.state.searchResults;
 
@@ -69,7 +56,8 @@ class App extends React.Component {
               />
           ) : (
             <SearchResults
-              data={App.getFilteredData(restaurantArray, this.state.filterStr, 'title')}
+              data={restaurantArray}
+              filter={this.state.filterStr}
               />
           )}
         </div>

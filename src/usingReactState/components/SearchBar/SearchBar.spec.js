@@ -8,13 +8,12 @@ import Checkbox from 'wix-style-react/Checkbox';
 import {checkboxTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
 describe('SearchBar', () => {
-  let wrapper;
-
-  afterEach(() => wrapper.detach());
+  // let wrapper;
+  // afterEach(() => wrapper.detach());
 
   it('test CheckBox TestKit', () => {
     const dataHook = 'myCheckBoxHook';
-    wrapper = mount(
+    const wrapper = mount(
       <Checkbox
         dataHook={dataHook}
         checked={false}
