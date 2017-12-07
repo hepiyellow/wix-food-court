@@ -1,13 +1,13 @@
 import React from 'react';
 import {expect} from 'chai';
 import {mount} from 'enzyme';
-import SearchResults, {DATA_TABLE_DATA_HOOK} from './SearchResults';
+import DataDisplay, {DATA_TABLE_DATA_HOOK} from './DataDisplay';
 import DataTable from 'wix-style-react/DataTable';
 import {dataTableTestkitFactory as enzymeDataTableTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
 
 
-describe('SearchResults', () => {
+describe('DataDisplay', () => {
   // let wrapper;
   // afterEach(() => wrapper.detach());
 
@@ -41,7 +41,7 @@ describe('SearchResults', () => {
       setShowStaticData: () => { }
     };
     const dataHook = DATA_TABLE_DATA_HOOK;
-    const wrapper = mount(<div><SearchResults {...searchResultsProps}/></div>);
+    const wrapper = mount(<div><DataDisplay {...searchResultsProps}/></div>);
     const testkit = enzymeDataTableTestkitFactory({wrapper, dataHook});
     expect(testkit.getRowsCount()).to.eq(2);
   });

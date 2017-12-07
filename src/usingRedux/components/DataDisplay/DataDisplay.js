@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import DataTable from 'wix-style-react/DataTable';
 
 import loggerFactory from 'debug-logger';
-const log = loggerFactory('SearchResults');
+const log = loggerFactory('DataDisplay');
 
 // Consider putting all data hooks of App in one place
 export const DATA_HOOKS = {
   dataTable: 'myDataTable'
 };
 
-const SearchResults = props => {
+/**
+ * DataDisplay component display the data (restaurant list).
+ * For now it is a DataTable, but it could display in another format.
+ */
+const DataDisplay = props => {
   log.debug('render(): props=', props);
   return (
     <DataTable
@@ -25,8 +29,8 @@ const SearchResults = props => {
   );
 };
 
-SearchResults.propTypes = {
+DataDisplay.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export default SearchResults;
+export default DataDisplay;

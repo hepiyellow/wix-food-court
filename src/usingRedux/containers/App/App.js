@@ -4,7 +4,7 @@ import autobind from 'autobind-decorator';
 
 import Loader from 'wix-style-react/Loader';
 import s from './App.scss';
-import SearchBar from '../SearchBar';
+import SearchBar from '../../components/SearchBar';
 import SearchResults from '../SearchResults';
 import staticData from '../../../data';
 
