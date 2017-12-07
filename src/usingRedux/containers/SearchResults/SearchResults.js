@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DataDisplay from '../../components/DataDisplay';
 
+import {connect} from 'react-redux';
+
 import loggerFactory from 'debug-logger';
 const log = loggerFactory('SearchResults');
 
@@ -35,4 +37,11 @@ SearchResults.propTypes = {
   filter: PropTypes.string.isRequired
 };
 
-export default SearchResults;
+function mapStateToProps(state) {
+  return {
+    filter: state.dataDisplay.filter
+  };
+}
+
+export default connect(mapStateToProps)(SearchResults);
+

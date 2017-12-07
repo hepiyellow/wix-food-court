@@ -57,7 +57,6 @@ class App extends React.Component {
           ) : (
             <SearchResults
               data={restaurantArray}
-              filter={this.state.filterStr}
               />
           )}
         </div>
