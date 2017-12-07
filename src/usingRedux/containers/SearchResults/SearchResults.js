@@ -18,15 +18,17 @@ function getFilteredData(data, filterStr, fieldName) {
   });
 }
 
-const SearchResults = props => {
-  log.debug('render(): props=', props);
-  const filteredData = getFilteredData(props.data, props.filter, 'title');
-  return (
-    <DataDisplay
-      data={filteredData}
-      />
-  );
-};
+class SearchResults extends React.Component {
+  render() {
+    log.debug('render(): props=', this.props);
+    const filteredData = getFilteredData(this.props.data, this.props.filter, 'title');
+    return (
+      <DataDisplay
+        data={filteredData}
+        />
+    );
+  }
+}
 
 SearchResults.propTypes = {
   data: PropTypes.array.isRequired,
