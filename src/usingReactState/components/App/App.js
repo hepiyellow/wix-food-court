@@ -6,7 +6,7 @@ import Loader from 'wix-style-react/Loader';
 import s from './App.scss';
 import SearchBar from '../SearchBar';
 import SearchResults from '../SearchResults';
-import staticData from '../../data';
+import staticData from '../../../data';
 
 const STATIC_SEARCH_RESULT = staticData.value.results;
 const DEFAULT_APP_STATE = {
