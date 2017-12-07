@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
+import dataDisplayReducer from './dataDisplayReducer';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  dataDisplay: dataDisplayReducer
 });
 
 export default rootReducer;
