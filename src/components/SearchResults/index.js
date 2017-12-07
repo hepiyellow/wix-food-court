@@ -1,1 +1,1 @@
-export {default} from './SearchResults';
+export {default, DATA_HOOKS} from './SearchResults';
