@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DataTable from 'wix-style-react/DataTable';
 
+import loggerFactory from 'debug-logger';
+const log = loggerFactory('SearchResults');
+
 // Consider putting all data hooks of App in one place
 export const DATA_HOOKS = {
   dataTable: 'myDataTable'
 };
 
 const SearchResults = props => {
-  console.log('SearchResults.render(): props=', props);
+  log.debug('render(): props=', props);
   return (
     <DataTable
       dataHook={DATA_HOOKS.dataTable}

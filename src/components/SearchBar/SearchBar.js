@@ -5,11 +5,15 @@ import s from './SearchBar.scss';
 import Search from 'wix-style-react/Search';
 import Checkbox from 'wix-style-react/Checkbox';
 
+import loggerFactory from 'debug-logger';
+const log = loggerFactory('SearchBar');
+
 export const DATA_HOOKS = {
   staticDataCheckbox: 'staticDataCheckbox'
 };
+
 const SearchBar = props => {
-  console.log('SearchBar.render(): props=', props);
+  log.debug('render(): props=', props);
   // ESLint forces handler to be prefixed by 'handle'
   const handleManuallyInputFilter = inputValue => {
     props.updateFilter(inputValue);
@@ -21,12 +25,8 @@ const SearchBar = props => {
   };
 
   const handleCheckboxChange = _ref2 => {
-    // const isChecked = _ref2.target.checked;
-
-    // console.log('SearchBar.handleCheckboxChange(): target=', _ref2.target);
-    console.log('SearchBar.handleCheckboxChange(): target.checked=', _ref2.target.checked);
     const isChecked = !!_ref2.target.checked;
-    console.log('SearchBar.handleCheckboxChange(): with isChecked=', isChecked);
+    log.debug('handleCheckboxChange(): with isChecked=', isChecked);
     props.setShowStaticData(isChecked);
   };
 
