@@ -43,6 +43,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "file:node_modules/react-redux",
+    "react-router-dom": "^4.2.2",
     "redux": "file:node_modules/redux",
     "wix-style-react": "^1.1.4262"
   },
@@ -58,5 +59,11 @@
   },
   "eslintConfig": {
     "extends": "wix/react"
+  },
+  "webpack": {
+    "server.proxy": {
+      "/reactState": "/",
+      "/redux": "/"   
+    } 
   }
 }

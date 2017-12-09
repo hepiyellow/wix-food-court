@@ -2,8 +2,8 @@ import React from 'react';
 import {expect} from 'chai';
 import {mount} from 'enzyme';
 import {AppUsingRedux as App} from './AppUsingRedux';
-import SearchBar, {DATA_HOOKS as searchBarDataHooks} from '../../components/SearchBar';
-import SearchResults, {DATA_HOOKS as searchResultsDataHooks} from '../SearchResults';
+import SearchBar, {DATA_HOOKS as searchBarDataHooks} from './components/SearchBar';
+import SearchResults, {DATA_HOOKS as searchResultsDataHooks} from './containers/SearchResults';
 
 import Checkbox from 'wix-style-react/Checkbox';
 
@@ -20,8 +20,6 @@ describe('App', () => {
     );
     expect(wrapper.find('h2').length).to.eq(1);
   });
-
-  
 
   it('renders SearchBar and SearchResults', () => {
     wrapper = mount(

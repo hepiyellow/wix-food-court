@@ -1,1 +1,1 @@
-// See AppUsingRedux.spec.js
+// See AppUsingRedux . spec . js

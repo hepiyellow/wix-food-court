@@ -2,7 +2,7 @@ import React from 'react';
 import autobind from 'autobind-decorator';
 import Button from 'wix-style-react/Button';
 
-import AppUsingState from './usingReactState/components/App';
+import AppUsingState from './usingReactState/containers/App';
 import AppUsingRedux from './usingRedux/AppUsingRedux';
 
 const Mode = {

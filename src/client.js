@@ -1,10 +1,10 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppWrapper from './AppWrapper';
+import AppRouter from './AppRouter';
 
 
 ReactDOM.render(
-  <AppWrapper/>,
+  <AppRouter/>,
   document.getElementById('root')
 );
