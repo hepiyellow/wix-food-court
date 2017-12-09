@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DataDisplay from '../../components/DataDisplay';
+import autobind from 'autobind-decorator';
 
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as Actions from '../../actions';
+
+import Search from 'wix-style-react/Search';
+import s from './SearchResults.scss';
 
 import loggerFactory from 'debug-logger';
 const log = loggerFactory('SearchResults');
 
+import DataDisplay from '../../components/DataDisplay';
 /**
 * Creates a filtered data array, selecting only rows in which the value of
 * the property named [filedName] includes the filter string.
@@ -23,18 +29,51 @@ function getFilteredData(data, filterStr, fieldName) {
 class SearchResults extends React.Component {
   render() {
     log.debug('render(): props=', this.props);
-    const filteredData = getFilteredData(this.props.data, this.props.filter, 'title');
-    return (
-      <DataDisplay
-        data={filteredData}
-        />
-    );
+    const data = this.props.data;
+    const options = data.map((item, index) => {
+      return {
+        id: index,
+        value: item.title
+      };
+    });
+    const filteredData = getFilteredData(data, this.props.filter, 'title');
+
+    if (data.length === 0) {
+      return (
+        <div>No Data</div>
+      );
+    } else {
+      return (
+        <div>
+          <div className={s.filterInput}>
+            <Search
+              id="filter"
+              closeOnSelect={false}
+              onManuallyInput={this.handleManuallyInputFilter}
+              options={options}
+              placeholder="Filter By Name"
+              />
+          </div>
+          <DataDisplay
+            data={filteredData}
+            />
+        </div>
+      );
+    }
+
+  }
+
+  @autobind
+  handleManuallyInputFilter(inputValue) {
+    this.props.updateFilter(inputValue);
   }
 }
 
 SearchResults.propTypes = {
   data: PropTypes.array.isRequired,
-  filter: PropTypes.string.isRequired
+  filter: PropTypes.string.isRequired,
+  // This is a Redux mapped prop. Eslint forces it to be here.
+  updateFilter: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -42,6 +81,10 @@ function mapStateToProps(state) {
     filter: state.dataDisplay.filter
   };
 }
-
-export default connect(mapStateToProps)(SearchResults);
+function mapDispatchToProps(dispatch) {
+  return {
+    updateFilter: bindActionCreators(Actions.setFilterActionCreator, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
 

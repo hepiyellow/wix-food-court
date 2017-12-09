@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import autobind from 'autobind-decorator';
 
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as Actions from '../../actions';
+// import * as Actions from '../../actions';
 
 import s from './SearchBar.scss';
 import Search from 'wix-style-react/Search';
@@ -19,11 +18,6 @@ export const DATA_HOOKS = {
 
 
 class SearchBar extends React.Component {
-
-  @autobind
-  handleManuallyInputFilter(inputValue) {
-    this.props.updateFilter(inputValue);
-  }
 
   @autobind
   handleManuallyInputSearch(inputValue) {
@@ -66,15 +60,6 @@ class SearchBar extends React.Component {
             Show Static Data
           </Checkbox>
         </div>
-        <div className={s.filterInput}>
-          <Search
-            id="filter"
-            closeOnSelect={false}
-            onManuallyInput={this.handleManuallyInputFilter}
-            options={options}
-            placeholder="Filter By Name"
-            />
-        </div>
       </div>
     );
   }
@@ -85,9 +70,7 @@ SearchBar.propTypes = {
   data: PropTypes.array.isRequired,
   showStaticData: PropTypes.bool.isRequired,
   setShowStaticData: PropTypes.func.isRequired,
-  fireSearch: PropTypes.func.isRequired,
-  // This is a Redux mapped prop. Eslint forces it to be here.
-  updateFilter: PropTypes.func.isRequired,
+  fireSearch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -96,11 +79,7 @@ function mapStateToProps(state) {
     filterString: state.dataDisplay.filter
   };
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    updateFilter: bindActionCreators(Actions.setFilterActionCreator, dispatch)
-  };
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+
+export default connect(mapStateToProps)(SearchBar);
