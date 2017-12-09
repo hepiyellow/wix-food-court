@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import autobind from 'autobind-decorator';
 
 import {connect} from 'react-redux';
-// import * as Actions from '../../actions';
+import * as Actions from '../../actions';
+import {bindActionCreators} from 'redux';
 
 import s from './SearchBar.scss';
 import Search from 'wix-style-react/Search';
@@ -70,16 +71,20 @@ SearchBar.propTypes = {
   data: PropTypes.array.isRequired,
   showStaticData: PropTypes.bool.isRequired,
   setShowStaticData: PropTypes.func.isRequired,
+  // This is mapped by Redux connect
   fireSearch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   // Maybe no need for state
   return {
-    filterString: state.dataDisplay.filter
+    searchTerm: state.searchTerm
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    fireSearch: bindActionCreators(Actions.fireSearchActionCreator, dispatch)
   };
 }
 
-
-
-export default connect(mapStateToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

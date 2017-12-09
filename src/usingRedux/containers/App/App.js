@@ -43,8 +43,6 @@ class App extends React.Component {
             data={restaurantArray}
             showStaticData={this.state.showStaticData}
             setShowStaticData={this.setShowStaticData}
-            updateFilter={this.updateFilterStr}
-            fireSearch={this.fireSearch}
             />
         </div>
         <div className={s.searchResultsPane}>
