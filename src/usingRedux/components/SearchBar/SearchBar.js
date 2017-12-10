@@ -28,17 +28,18 @@ class SearchBar extends React.Component {
   @autobind
   handleCheckboxChange(_ref2) {
     const isChecked = !!_ref2.target.checked;
-    log.debug('handleCheckboxChange(): with isChecked=', isChecked);
     this.props.setShowStaticData(isChecked);
   }
 
   render() {
     log.debug('render(): props=', this.props);
+    // TODO: implement recent searchTerms update
+    const recentSearchTerms = ['בית', 'חומוס'];
 
-    const options = this.props.data.map((item, index) => {
+    const options = recentSearchTerms.map((item, index) => {
       return {
         id: index,
-        value: item.title
+        value: item
       };
     });
 
@@ -68,7 +69,6 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  data: PropTypes.array.isRequired,
   showStaticData: PropTypes.bool.isRequired,
   setShowStaticData: PropTypes.func.isRequired,
   // This is mapped by Redux connect
@@ -78,12 +78,14 @@ SearchBar.propTypes = {
 function mapStateToProps(state) {
   // Maybe no need for state
   return {
-    searchTerm: state.searchTerm
+    searchTerm: state.search.searchTerm,
+    showStaticData: state.dataDisplay.showStaticData
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    fireSearch: bindActionCreators(Actions.fireSearchActionCreator, dispatch)
+    fireSearch: bindActionCreators(Actions.search.searchRequest, dispatch),
+    setShowStaticData: bindActionCreators(Actions.display.setShowStaticData, dispatch)
   };
 }
 

@@ -5,14 +5,21 @@ import autobind from 'autobind-decorator';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../../actions';
+import {SearchStatus} from '../../reducers/searchReducer';
 
 import Search from 'wix-style-react/Search';
+import Loader from 'wix-style-react/Loader';
 import s from './SearchResults.scss';
 
 import loggerFactory from 'debug-logger';
 const log = loggerFactory('SearchResults');
 
 import DataDisplay from '../../components/DataDisplay';
+import staticData from '../../../data';
+
+
+const STATIC_SEARCH_RESPONSE = staticData;
+
 /**
 * Creates a filtered data array, selecting only rows in which the value of
 * the property named [filedName] includes the filter string.
@@ -29,16 +36,33 @@ function getFilteredData(data, filterStr, fieldName) {
 class SearchResults extends React.Component {
   render() {
     log.debug('render(): props=', this.props);
-    const data = this.props.data;
-    const options = data.map((item, index) => {
+    const searchResponse = this.props.showStaticData ? STATIC_SEARCH_RESPONSE : this.props.searchResponse;
+
+    const restaurantList = searchResponse.value.results.map(item => {
+      return {
+        title: item.title.he_IL,
+        phone: item.contact.phone
+      };
+    });
+    // TODO: extract filterInput component
+    const filterInputOptions = restaurantList.map((item, index) => {
       return {
         id: index,
         value: item.title
       };
     });
-    const filteredData = getFilteredData(data, this.props.filter, 'title');
+    const filteredData = getFilteredData(restaurantList, this.props.filter, 'title');
 
-    if (data.length === 0) {
+    if (this.props.searchStatus.status === SearchStatus.IN_PROGRESS &&
+       !this.props.showStaticData) {
+      return (
+        <Loader
+          dataHook="search-loader"
+          size="large"
+          text={`Searching for [${this.state.searchTerm}]`}
+          />
+      );
+    } else if (restaurantList.length === 0) {
       return (
         <div>No Data</div>
       );
@@ -50,7 +74,7 @@ class SearchResults extends React.Component {
               id="filter"
               closeOnSelect={false}
               onManuallyInput={this.handleManuallyInputFilter}
-              options={options}
+              options={filterInputOptions}
               placeholder="Filter By Name"
               />
           </div>
@@ -60,7 +84,6 @@ class SearchResults extends React.Component {
         </div>
       );
     }
-
   }
 
   @autobind
@@ -70,20 +93,27 @@ class SearchResults extends React.Component {
 }
 
 SearchResults.propTypes = {
-  data: PropTypes.array.isRequired,
-  filter: PropTypes.string.isRequired,
   // This is a Redux mapped prop. Eslint forces it to be here.
+  filter: PropTypes.string.isRequired,
+  searchResponse: PropTypes.object.isRequired,
+  showStaticData: PropTypes.bool.isRequired,
+  searchStatus: PropTypes.object.isRequired,
+  // from mapDispatchToProps
   updateFilter: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
+  const {dataDisplay, search} = state;
   return {
-    filter: state.dataDisplay.filter
+    filter: dataDisplay.filter,
+    showStaticData: dataDisplay.showStaticData,
+    searchResponse: search.searchResponse,
+    searchStatus: search.searchStatus
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    updateFilter: bindActionCreators(Actions.setFilterActionCreator, dispatch)
+    updateFilter: bindActionCreators(Actions.display.setFilter, dispatch)
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

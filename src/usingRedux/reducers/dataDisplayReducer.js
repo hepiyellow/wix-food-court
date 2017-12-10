@@ -1,8 +1,16 @@
 import * as ACTION from '../actions/types';
-export default function dataDisplayReducer(state = {filter: ''}, reduxAction) {
+const DEFAULT_STATE = {
+  filter: '',
+  showStaticData: false
+};
+
+export default function dataDisplayReducer(state = DEFAULT_STATE, reduxAction) {
   switch (reduxAction.type) {
     case ACTION.SET_FILTER: {
-      return {filter: reduxAction.payload};
+      return Object.assign({}, state, {filter: reduxAction.payload});
+    }
+    case ACTION.SET_SHOW_STATIC_DATA: {
+      return Object.assign({}, state, {showStaticData: reduxAction.payload});
     }
     default:
       return state;
