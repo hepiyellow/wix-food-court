@@ -84,7 +84,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    fireSearch: bindActionCreators(Actions.search.searchRequest, dispatch),
+    fireSearch: bindActionCreators(Actions.search.fireSearch, dispatch),
     setShowStaticData: bindActionCreators(Actions.display.setShowStaticData, dispatch)
   };
 }
