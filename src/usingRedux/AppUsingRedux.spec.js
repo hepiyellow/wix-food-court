@@ -14,7 +14,7 @@ describe('App', () => {
 
   afterEach(() => wrapper.detach());
 
-  it('renders a title correctly', () => {
+  it.skip('renders a title correctly', () => {
     wrapper = mount(
       <App/>, {attachTo: document.createElement('div')}
     );

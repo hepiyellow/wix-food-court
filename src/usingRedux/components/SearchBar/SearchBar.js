@@ -70,15 +70,14 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   showStaticData: PropTypes.bool.isRequired,
-  setShowStaticData: PropTypes.func.isRequired,
   // This is mapped by Redux connect
+  setShowStaticData: PropTypes.func.isRequired,
   fireSearch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   // Maybe no need for state
   return {
-    searchTerm: state.search.searchTerm,
     showStaticData: state.dataDisplay.showStaticData
   };
 }
