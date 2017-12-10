@@ -59,7 +59,7 @@ class SearchResults extends React.Component {
         <Loader
           dataHook="search-loader"
           size="large"
-          text={`Searching for [${this.state.searchTerm}]`}
+          text={`Searching for [${this.props.searchStatus.searchTerm}]`}
           />
       );
     } else if (restaurantList.length === 0) {
