@@ -31,6 +31,7 @@
     "react-addons-test-utils": "^15.3.2",
     "react-test-renderer": "^15.5.4",
     "redux-mock-store": "^1.3.0",
+    "typescript": "^2.6.2",
     "yoshi": "latest"
   },
   "dependencies": {
