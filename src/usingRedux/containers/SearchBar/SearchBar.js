@@ -3,36 +3,16 @@ import PropTypes from 'prop-types';
 import autobind from 'autobind-decorator';
 
 import {connect} from 'react-redux';
-import {fireSearch} from '../../actions/searchActions';
-import {setShowStaticData} from '../../actions/displayActions';
-
 import {bindActionCreators} from 'redux';
+import {fireSearch} from '../../actions/searchActions';
 
 import s from './SearchBar.scss';
 import Search from 'wix-style-react/Search';
-import Checkbox from 'wix-style-react/Checkbox';
 
 import loggerFactory from 'debug-logger';
 const log = loggerFactory('SearchBar');
 
-export const DATA_HOOKS = {
-  staticDataCheckbox: 'staticDataCheckbox'
-};
-
-
 class SearchBar extends React.Component {
-
-  @autobind
-  handleManuallyInputSearch(inputValue) {
-    this.props.fireSearch(inputValue);
-  }
-
-  @autobind
-  handleCheckboxChange(_ref2) {
-    const isChecked = !!_ref2.target.checked;
-    this.props.setShowStaticData(isChecked);
-  }
-
   render() {
     log.debug('render(): props=', this.props);
     // TODO: implement recent searchTerms update
@@ -56,38 +36,25 @@ class SearchBar extends React.Component {
             options={options}
             placeholder="Search Term"
             />
-          <Checkbox
-            dataHook={DATA_HOOKS.staticDataCheckbox}
-            checked={this.props.showStaticData}
-            onChange={this.handleCheckboxChange}
-            >
-            Show Static Data
-          </Checkbox>
         </div>
       </div>
     );
   }
 
+  @autobind
+  handleManuallyInputSearch(inputValue) {
+    this.props.fireSearch(inputValue);
+  }
 }
 
 SearchBar.propTypes = {
-  showStaticData: PropTypes.bool.isRequired,
-  // This is mapped by Redux connect
-  setShowStaticData: PropTypes.func.isRequired,
   fireSearch: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
-  // Maybe no need for state
-  return {
-    showStaticData: state.dataDisplay.showStaticData
-  };
-}
 function mapDispatchToProps(dispatch) {
   return {
     fireSearch: bindActionCreators(fireSearch, dispatch),
-    setShowStaticData: bindActionCreators(setShowStaticData, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(() => {}, mapDispatchToProps)(SearchBar);

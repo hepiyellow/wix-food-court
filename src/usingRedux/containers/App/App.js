@@ -3,6 +3,7 @@ import React from 'react';
 import s from './App.scss';
 import SearchBar from '../SearchBar';
 import SearchResults from '../SearchResults';
+import ShowStaticResults from '../ShowStaticResults';
 
 // TODO: can we make this a functional component and still have redux work?
 class App extends React.Component {
@@ -18,6 +19,9 @@ class App extends React.Component {
           <SearchBar/>
         </div>
         <div className={s.searchResultsPane}>
+          <div>
+            <ShowStaticResults/>
+          </div>
           <SearchResults/>
         </div>
       </div>
