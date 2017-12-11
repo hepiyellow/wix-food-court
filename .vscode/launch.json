@@ -21,6 +21,23 @@
     ]
   },
   {
+    "name": "Mocha CurFile",
+    "type": "node",
+    "request": "launch",
+    "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+    "args": ["${relativeFile}", "--no-timeouts"],
+    "cwd": "${workspaceRoot}",
+    "sourceMaps": true,
+    "env": {
+      "NODE_ENV": "test"
+    },
+    "runtimeArgs": [
+      "--nolazy",
+      "--require", "babel-register",
+      "--require", "${workspaceRoot}/node_modules/yoshi/config/mocha-setup.js"
+    ]
+  },
+  {
     "name": "Launch Protractor",
     "type": "node",
     "request": "launch",
