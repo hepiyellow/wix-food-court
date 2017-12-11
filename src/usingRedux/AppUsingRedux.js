@@ -10,14 +10,19 @@ import App from './containers/App';
 import reducers from './reducers';
 
 const loggerMiddleware = createLogger();
-const store = createStore(
-  reducers,
-  applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware
-  )
-);
+const createAppStore = () => {
+  return createStore(
+    reducers,
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware
+    )
+  );
+};
 
+export {createAppStore}; // for testing
+
+const store = createAppStore();
 const AppUsingRedux = () => {
   return (
     <Provider store={store}>
