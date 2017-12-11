@@ -1,6 +1,7 @@
 import React from 'react';
 import {expect} from 'chai';
 import {mount} from 'enzyme';
+import sinon from 'sinon';
 import Checkbox from 'wix-style-react/Checkbox';
 import {mountWithMockStore} from '../../../../test/test-helper';
 
@@ -12,15 +13,12 @@ describe('ShowStaticResults', () => {
   // afterEach(() => wrapper.detach());
   it('test CheckBox TestKit', () => {
     const dataHook = 'myCheckBoxHook';
+    const handleChange = sinon.spy();
     const wrapper = mount(
       <Checkbox
         dataHook={dataHook}
         checked={false}
-        onChange={function (_ref2) {
-          // TODO: use spy to see if this is called
-
-          // console.log('onChange(): ', _ref2.target.checked ? 'Checked' : 'Unchecked');
-        }}
+        onChange={handleChange}
         >
         My CheckBox
       </Checkbox>
@@ -30,11 +28,13 @@ describe('ShowStaticResults', () => {
     expect(checkBoxTestKit.exists()).to.be.true;
     // console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
     // console.log('checkBoxTestKit.click()');
+    handleChange.called.should.equal.false;
     checkBoxTestKit.click();
+    handleChange.called.should.equal.true;
     // console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
   });
 
-  it('renders checkbox', () => {
+  it.skip('renders checkbox', () => {
     const wrapper = mountWithMockStore(
       <ShowStaticResults/>
     );

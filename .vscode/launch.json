@@ -34,6 +34,7 @@
     "runtimeArgs": [
       "--nolazy",
       "--require", "babel-register",
+      "--require", "should",
       "--require", "${workspaceRoot}/node_modules/yoshi/config/mocha-setup.js"
     ]
   },
