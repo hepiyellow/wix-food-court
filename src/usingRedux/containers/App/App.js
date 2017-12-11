@@ -1,8 +1,8 @@
 import React from 'react';
 
 import s from './App.scss';
-// import SearchBar from '../../components/SearchBar';
-// import SearchResults from '../SearchResults';
+import SearchBar from '../SearchBar';
+import SearchResults from '../SearchResults';
 
 // TODO: can we make this a functional component and still have redux work?
 class App extends React.Component {
@@ -15,10 +15,10 @@ class App extends React.Component {
           <h2>{'Food Court! (Redux)'}</h2>
         </div>
         <div className={s.searchPane}>
-          {/* <SearchBar/> */}
+          <SearchBar/>
         </div>
         <div className={s.searchResultsPane}>
-          {/* <SearchResults/> */}
+          <SearchResults/>
         </div>
       </div>
     );

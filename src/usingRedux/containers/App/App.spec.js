@@ -2,7 +2,7 @@ import React from 'react';
 import {expect} from 'chai';
 import {mount} from 'enzyme';
 import App from './App';
-import SearchBar, {DATA_HOOKS as searchBarDataHooks} from '../../components/SearchBar';
+import SearchBar, {DATA_HOOKS as searchBarDataHooks} from '../SearchBar';
 import SearchResults, {DATA_HOOKS as searchResultsDataHooks} from '../SearchResults';
 
 import {Provider} from 'redux';
