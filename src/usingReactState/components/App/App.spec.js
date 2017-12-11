@@ -9,7 +9,7 @@ import Checkbox from 'wix-style-react/Checkbox';
 
 import {dataTableTestkitFactory, checkboxTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
-describe('App', () => {
+describe('App Using ReactState', () => {
   let wrapper;
 
   afterEach(() => wrapper.detach());

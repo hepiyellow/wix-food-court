@@ -7,7 +7,7 @@ import Checkbox from 'wix-style-react/Checkbox';
 
 import {checkboxTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
-describe('SearchBar', () => {
+describe('SearchBar (Using ReactState)', () => {
   // let wrapper;
   // afterEach(() => wrapper.detach());
 
@@ -18,7 +18,7 @@ describe('SearchBar', () => {
         dataHook={dataHook}
         checked={false}
         onChange={function (_ref2) {
-          console.log('onChange(): ', _ref2.target.checked ? 'Checked' : 'Unchecked');
+          // console.log('onChange(): ', _ref2.target.checked ? 'Checked' : 'Unchecked');
         }}
         >
         My CheckBox
@@ -27,10 +27,10 @@ describe('SearchBar', () => {
 
     const checkBoxTestKit = checkboxTestkitFactory({wrapper, dataHook});
     expect(checkBoxTestKit.exists()).to.be.true;
-    console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
-    console.log('checkBoxTestKit.click()');
+    // console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
+    // console.log('checkBoxTestKit.click()');
     checkBoxTestKit.click();
-    console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
+    // console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
   });
 
   it.skip('renders 2 Search input and checkbox', () => {
@@ -49,9 +49,9 @@ describe('SearchBar', () => {
 
     const checkBoxTestKit = checkboxTestkitFactory({wrapper, dataHook: DATA_HOOKS.staticDataCheckbox});
     expect(checkBoxTestKit.exists()).to.be.true;
-    console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
+    // console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
     checkBoxTestKit.click();
-    console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
+    // console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
 
   });
 

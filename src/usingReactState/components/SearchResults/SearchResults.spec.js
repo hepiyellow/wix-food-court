@@ -7,7 +7,7 @@ import {dataTableTestkitFactory as enzymeDataTableTestkitFactory} from 'wix-styl
 
 
 
-describe('SearchResults', () => {
+describe('SearchResults (Using ReactState)', () => {
   // let wrapper;
   // afterEach(() => wrapper.detach());
 
