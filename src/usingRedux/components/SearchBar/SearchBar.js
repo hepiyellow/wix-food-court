@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import autobind from 'autobind-decorator';
 
 import {connect} from 'react-redux';
-import * as Actions from '../../actions';
+import {fireSearch} from '../../actions/searchActions';
+import {setShowStaticData} from '../../actions/displayActions';
+
 import {bindActionCreators} from 'redux';
 
 import s from './SearchBar.scss';
@@ -83,8 +85,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    fireSearch: bindActionCreators(Actions.search.fireSearch, dispatch),
-    setShowStaticData: bindActionCreators(Actions.display.setShowStaticData, dispatch)
+    fireSearch: bindActionCreators(fireSearch, dispatch),
+    setShowStaticData: bindActionCreators(setShowStaticData, dispatch)
   };
 }
 
