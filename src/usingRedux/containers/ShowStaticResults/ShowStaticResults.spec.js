@@ -11,7 +11,7 @@ import ShowStaticResults from './ShowStaticResults';
 describe('ShowStaticResults', () => {
   // let wrapper;
   // afterEach(() => wrapper.detach());
-  it('test CheckBox TestKit', () => {
+  it.skip('test CheckBox TestKit', () => {
     const dataHook = 'myCheckBoxHook';
     const handleChange = sinon.spy();
     const wrapper = mount(
@@ -34,7 +34,7 @@ describe('ShowStaticResults', () => {
     // console.log('checkBoxTestKit.isChecked() = ', checkBoxTestKit.isChecked());
   });
 
-  it.skip('renders checkbox', () => {
+  it('renders checkbox', () => {
     const wrapper = mountWithMockStore(
       <ShowStaticResults/>
     );
